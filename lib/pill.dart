@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mid/screen.dart';
+import 'package:mid/shop.dart';
 
+import 'SCREEN4.dart';
 import 'login.dart';
 class Pill extends StatefulWidget {
   @override
@@ -8,11 +11,21 @@ class Pill extends StatefulWidget {
 }
 
 class _PillState extends State<Pill> {
+
+  final List<Widget> pages = [
+    screen(),
+    PharmacyListScreen(),
+    CartScreen(),
+    Login(),
+  ];
+
   // إنشاء متحكمات للنصوص
   final TextEditingController _medicineController = TextEditingController();
   final TextEditingController _timeController = TextEditingController();
 
   @override
+  int index = 0;
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.orange.shade100,
@@ -121,6 +134,31 @@ class _PillState extends State<Pill> {
           ],
         ),
       ),
+
+
+      // عرض الصفحة المختارة بناءً على index
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.lightGreenAccent,
+        selectedItemColor: Colors.red,
+        unselectedItemColor: Colors.brown.shade800,
+        currentIndex: index,
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.medical_information_outlined), label: 'pharmacy'),
+          BottomNavigationBarItem(icon: Icon(Icons.shopping_cart_rounded), label: 'Cart'),
+          BottomNavigationBarItem(icon: Icon(Icons.logout), label: 'logout'),
+        ],
+        onTap: (v) {
+          setState(() {
+            index = v; // تغيير الصفحة بناءً على الفهرس
+          });
+        },
+      ),
+
+
+
+
+
     );
   }
 

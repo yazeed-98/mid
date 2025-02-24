@@ -2,12 +2,22 @@ import '' 'package:flutter/material.dart';
 
 import 'package:mid/pill.dart';
 import 'package:mid/screen3.dart';
+import 'package:mid/shop.dart';
 import 'package:mid/spoort.dart';
 
 import 'SCREEN4.dart';
 import 'login.dart';
 
 class screen extends StatefulWidget {
+  final List<Widget> pages = [
+    screen(),
+    PharmacyListScreen(),
+    CartScreen(),
+    Login(),
+  ];
+
+
+
   @override
   State<screen> createState() => _screenState();
 }
@@ -102,11 +112,13 @@ class _screenState extends State<screen> {
           ),
         ],
       ),
+
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.lightGreenAccent,
         selectedItemColor: Colors.red,
         unselectedItemColor: Colors.brown.shade800,
         currentIndex: index,
+
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.favorite), label: 'Favorites'),
