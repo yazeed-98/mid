@@ -5,13 +5,13 @@ import 'package:mid/shop.dart';
 
 import 'SCREEN4.dart';
 import 'login.dart';
+
 class Pill extends StatefulWidget {
   @override
   State<Pill> createState() => _PillState();
 }
 
 class _PillState extends State<Pill> {
-
   final List<Widget> pages = [
     screen(),
     PharmacyListScreen(),
@@ -19,13 +19,12 @@ class _PillState extends State<Pill> {
     Login(),
   ];
 
-  // إنشاء متحكمات للنصوص
   final TextEditingController _medicineController = TextEditingController();
   final TextEditingController _timeController = TextEditingController();
 
-  @override
   int index = 0;
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.orange.shade100,
@@ -55,6 +54,10 @@ class _PillState extends State<Pill> {
         padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
+            // صورة الخلفية
+            Image.asset('assets/images/images(1).jpeg'),
+
+            SizedBox(height: 20),
             // حقل إدخال اسم الدواء
             TextField(
               controller: _medicineController,
@@ -118,25 +121,32 @@ class _PillState extends State<Pill> {
               },
               child: Text('Adjust'),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue.shade100,
-                    fixedSize: Size(150, 40),
-                  ),
-
-                  onPressed: (){
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) =>Login(),));
-                  }, child: Text('log out')),
-            )
-
+            SizedBox(height: 20),
+            // زر تسجيل الخروج
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue.shade100,
+                fixedSize: Size(150, 40),
+              ),
+              onPressed: () {
+                Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => Login()),
+                      (route) => false,
+                );
+              },
+              child: Text('Log out'),
+            ),
+            // عرض الصفحة المناسبة حسب الفهرس
+            Expanded(
+              child: IndexedStack(
+                index: index,
+                children: pages,
+              ),
+            ),
           ],
         ),
       ),
-
-
-      // عرض الصفحة المختارة بناءً على index
+      // شريط التنقل السفلي
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.lightGreenAccent,
         selectedItemColor: Colors.red,
@@ -144,25 +154,19 @@ class _PillState extends State<Pill> {
         currentIndex: index,
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.medical_information_outlined), label: 'pharmacy'),
+          BottomNavigationBarItem(icon: Icon(Icons.medical_information_outlined), label: 'Pharmacy'),
           BottomNavigationBarItem(icon: Icon(Icons.shopping_cart_rounded), label: 'Cart'),
-          BottomNavigationBarItem(icon: Icon(Icons.logout), label: 'logout'),
+          BottomNavigationBarItem(icon: Icon(Icons.logout), label: 'Logout'),
         ],
         onTap: (v) {
           setState(() {
-            index = v; // تغيير الصفحة بناءً على الفهرس
+            index = v;
           });
         },
       ),
-
-
-
-
-
     );
   }
 
-  // دالة لحفظ البيانات
   void savePillData(String medicine, String time) {
     print('Medicine: $medicine');
     print('Eating Time: $time');

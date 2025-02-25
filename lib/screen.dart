@@ -9,12 +9,7 @@ import 'SCREEN4.dart';
 import 'login.dart';
 
 class screen extends StatefulWidget {
-  final List<Widget> pages = [
-    screen(),
-    PharmacyListScreen(),
-    CartScreen(),
-    Login(),
-  ];
+
 
 
 
@@ -23,6 +18,14 @@ class screen extends StatefulWidget {
 }
 
 class _screenState extends State<screen> {
+
+  final List<Widget> pages = [
+    screen(),
+    PharmacyListScreen(),
+    CartScreen(),
+    Login(),
+  ];
+
   int index = 0;
 
   @override
@@ -110,20 +113,24 @@ class _screenState extends State<screen> {
               Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>Login()));
             }),
           ),
+          Expanded(
+            child: IndexedStack(
+              index: index,
+              children:pages ,
+            ),
+          ),
         ],
       ),
-
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.lightGreenAccent,
         selectedItemColor: Colors.red,
         unselectedItemColor: Colors.brown.shade800,
         currentIndex: index,
-
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.favorite), label: 'Favorites'),
+          BottomNavigationBarItem(icon: Icon(Icons.medical_information_outlined), label: 'Pharmacy'),
           BottomNavigationBarItem(icon: Icon(Icons.shopping_cart_rounded), label: 'Cart'),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
+          BottomNavigationBarItem(icon: Icon(Icons.logout), label: 'Logout'),
         ],
         onTap: (v) {
           setState(() {
