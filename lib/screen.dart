@@ -1,5 +1,4 @@
-import '' 'package:flutter/material.dart';
-
+import 'package:flutter/material.dart';
 import 'package:mid/pill.dart';
 import 'package:mid/screen3.dart';
 import 'package:mid/shop.dart';
@@ -8,22 +7,17 @@ import 'package:mid/spoort.dart';
 import 'SCREEN4.dart';
 import 'login.dart';
 
-class screen extends StatefulWidget {
-
-
-
-
+class Screen extends StatefulWidget {
   @override
-  State<screen> createState() => _screenState();
+  State<Screen> createState() => _ScreenState();
 }
 
-class _screenState extends State<screen> {
-
+class _ScreenState extends State<Screen> {
   final List<Widget> pages = [
-    screen(),
+    Screen(),
     PharmacyListScreen(),
     CartScreen(),
-    Login(),
+
   ];
 
   int index = 0;
@@ -35,90 +29,110 @@ class _screenState extends State<screen> {
       appBar: AppBar(
         backgroundColor: Colors.blue.shade100,
         centerTitle: true,
-        flexibleSpace: Padding(
-          padding: const EdgeInsets.only(left: 65),
-          child: Row(
-            children: [
-              Icon(Icons.add_circle, size: 40),
-              Text("Pill", style: TextStyle(fontSize: 40, color: Colors.red)),
-              Text("Point", style: TextStyle(fontWeight: FontWeight.w900, fontSize: 40))
-            ],
-          ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.add_circle, size: 40),
+            Text("Pill", style: TextStyle(fontSize: 40, color: Colors.red)),
+            Text("Point", style: TextStyle(fontWeight: FontWeight.w900, fontSize: 40)),
+          ],
         ),
-        bottom: PreferredSize(
-          preferredSize: Size(0, 40),
-          child: Container(
-            height: 40,
-            width: 300,
-            decoration: BoxDecoration(
-              color: Colors.orange.shade100,
-              borderRadius: BorderRadius.circular(40),
-            ),
-            child: Row(
-              children: [
-                Icon(Icons.add_circle, size: 40, color: Colors.red),
-                Padding(
-                  padding: const EdgeInsets.only(left: 40),
-                  child: Text('Pharmacy', style: TextStyle(fontSize: 25)),
-                ),
-                Text('App', style: TextStyle(fontSize: 15, color: Colors.red,
-                    fontWeight: FontWeight.bold)),
-                Padding(
-                  padding: const EdgeInsets.only(left: 37),
-                  child: Icon(Icons.add_circle, size: 40, color: Colors.red),
-                ),
-              ],
-            ),
-          ),
+    bottom: PreferredSize(
+    preferredSize: Size(0, 40),
+    child: Container(
+    height: 40,
+    width: 300,
+    decoration: BoxDecoration(
+    color: Colors.orange.shade100,
+    borderRadius: BorderRadius.circular(40),
+    ),
+    child: Row(
+    children: [
+    Icon(Icons.add_circle, size: 40, color: Colors.red),
+    Padding(
+    padding: const EdgeInsets.only(left: 40),
+    child: Text('Pharmacy', style: TextStyle(fontSize: 25)),
+    ),
+    Text('App', style: TextStyle(fontSize: 15, color: Colors.red,
+    fontWeight: FontWeight.bold)),
+    Padding(
+    padding: const EdgeInsets.only(left: 37),
+    child: Icon(Icons.add_circle, size: 40, color: Colors.red),
+    ),
+    ],
+    ),
+
         ),
       ),
-      body: Column(
-        children: [
-          Container(
-            width: 400,
-            height: 230,
-            child: Image.asset('assets/image/screen4.jpg', fit: BoxFit.cover),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+      ),
+      body:
+             Column(
               children: [
-                _buildElevatedButton(icon: Icons.local_pharmacy, label: 'Pharmacy', onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>PharmacyListScreen()));
-                }),
-                _buildElevatedButton(icon: Icons.medication, label: 'Medication', onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>MedicineScreen()));
-                }),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                _buildElevatedButton(icon: Icons.alarm, label: 'pillAlarm', onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => Pill(),));
-                }),
-                _buildElevatedButton(icon: Icons.support_agent, label: 'Support', onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Support()));
-                }),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 12),
-            child: _buildElevatedButton(icon: Icons.logout, label: 'Log OUT', onPressed: () {
-              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>Login()));
-            }),
-          ),
-          Expanded(
-            child: IndexedStack(
-              index: index,
-              children:pages ,
-            ),
-          ),
+                Container(
+                  width: double.infinity,
+                  height: 230,
+                  child: Image.asset('assets/image/screen4.jpg', fit: BoxFit.cover),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      _buildElevatedButton(
+                        icon: Icons.local_pharmacy,
+                        label: 'Pharmacy',
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => PharmacyListScreen()));
+                        },
+                      ),
+                      _buildElevatedButton(
+                        icon: Icons.medication,
+                        label: 'Medication',
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => MedicineScreen()));
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      _buildElevatedButton(
+                        icon: Icons.alarm,
+                        label: 'pillAlarm',
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => Pill()));
+                        },
+                      ),
+                      _buildElevatedButton(
+                        icon: Icons.support_agent,
+                        label: 'Support',
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context) => Support()));
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 12),
+                  child: _buildElevatedButton(
+                    icon: Icons.logout,
+                    label: 'Log OUT',
+                    onPressed: () {
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => Login()));
+                    },
+                  ),
+                ),
+
+
+
+
+
+
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -130,15 +144,26 @@ class _screenState extends State<screen> {
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.medical_information_outlined), label: 'Pharmacy'),
           BottomNavigationBarItem(icon: Icon(Icons.shopping_cart_rounded), label: 'Cart'),
-          BottomNavigationBarItem(icon: Icon(Icons.logout), label: 'Logout'),
+          BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'settings'),
         ],
         onTap: (v) {
           setState(() {
             index = v;
+            switch (index) {
+              case 0:
+                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => Screen(),));
+              case 1:
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => PharmacyListScreen (),));
+              case 2:
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => CartScreen(),));
+
+
+
+
+            }
           });
         },
       ),
-
     );
   }
 

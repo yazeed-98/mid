@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mid/screen.dart';
+import 'package:mid/shop.dart';
+import 'package:mid/spoort.dart';
 
 import 'TIXT.dart';
 
@@ -91,21 +94,32 @@ class _PharmacyListScreenState extends State<PharmacyListScreen> {
           );
         },
       ),
-
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.lightGreenAccent, // نفس لون الـ AppBar
-        selectedItemColor: Colors.red, // لون العنصر النشط
-        unselectedItemColor: Colors.brown.shade800, // لون العناصر غير النشطة
-        currentIndex: index, // تحديد العنصر النشط
+        backgroundColor: Colors.lightGreenAccent,
+        selectedItemColor: Colors.red,
+        unselectedItemColor: Colors.brown.shade800,
+        currentIndex: index,
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.favorite), label: 'Favorites'),
+          BottomNavigationBarItem(icon: Icon(Icons.medical_information_outlined), label: 'Pharmacy'),
           BottomNavigationBarItem(icon: Icon(Icons.shopping_cart_rounded), label: 'Cart'),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
+          BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'settings'),
         ],
         onTap: (v) {
           setState(() {
             index = v;
+            switch (index) {
+              case 0:
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => Screen(),));
+              case 1:
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => PharmacyListScreen (),));
+              case 2:
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => CartScreen (),));
+
+
+
+
+            }
           });
         },
       ),

@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:mid/screen.dart';
 import 'package:mid/shop.dart';
+import 'package:mid/spoort.dart';
 
+import 'SCREEN4.dart';
 import 'TIXT.dart';
 import 'mad.dart';
 
 class MedicineScreen extends StatefulWidget {
-  final _formKey = GlobalKey<FormState>();
-  String? email;
-  String? pass;
 
-  MedicineScreen({this.email, this.pass});
 
   @override
   State<MedicineScreen> createState() => _MedicineScreenState();
@@ -28,7 +27,7 @@ class _MedicineScreenState extends State<MedicineScreen> {
     {'name': 'Aspirin', 'description': 'Blood thinner and pain reliever', 'price': '\$7'},
     {'name': 'Loratadine', 'description': 'Antihistamine for hay fever', 'price': '\$9'},
   ];
-
+  int index=0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -110,6 +109,37 @@ class _MedicineScreenState extends State<MedicineScreen> {
           );
         },
       ),
+
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.lightGreenAccent,
+        selectedItemColor: Colors.red,
+        unselectedItemColor: Colors.brown.shade800,
+        currentIndex: index,
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.medical_information_outlined), label: 'Pharmacy'),
+          BottomNavigationBarItem(icon: Icon(Icons.shopping_cart_rounded), label: 'Cart'),
+          BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'settings'),
+        ],
+        onTap: (v) {
+          setState(() {
+            index = v;
+            switch (index) {
+              case 0:
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => Screen(),));
+              case 1:
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => PharmacyListScreen (),));
+              case 2:
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => CartScreen(),));
+
+
+
+
+            }
+          });
+        },
+      ),
+
     );
   }
 }

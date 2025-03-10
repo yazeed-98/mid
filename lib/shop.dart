@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 class CartScreen extends StatefulWidget {
-  final  List<Map<String, dynamic>>? cartItems;
-  CartScreen({ this.cartItems});
+  final List<Map<String, dynamic>>? cartItems;
+
+  CartScreen({this.cartItems});
 
   @override
   State<CartScreen> createState() => _CartScreenState();
@@ -11,19 +12,22 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Shopping Cart'),
-        backgroundColor: Colors.blue.shade100,
+    // توفير قائمة افتراضية في حال كانت cartItems تساوي null
+    final List<Map<String, dynamic>> cartItems = widget.cartItems ?? [];
 
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Shopping Cart'),
+        backgroundColor: Colors.blue.shade100,
       ),
-      body: widget.cartItems!.isEmpty
+      body: cartItems.isEmpty
           ? Center(child: Text('Cart is empty 🛒'))
           : ListView.builder(
-        itemCount: widget.cartItems?.length,
+        itemCount: cartItems.length,
         itemBuilder: (context, index) {
           return ListTile(
-            title: Text(widget.cartItems?[index]['name']),
-            subtitle: Text("Price: \$${widget.cartItems?[index]['price']}"),
+            title: Text(cartItems[index]['name']),
+            subtitle: Text("Price: \$${cartItems[index]['price']}"),
           );
         },
       ),

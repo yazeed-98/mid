@@ -13,7 +13,7 @@ class Pill extends StatefulWidget {
 
 class _PillState extends State<Pill> {
   final List<Widget> pages = [
-    screen(),
+
     PharmacyListScreen(),
     CartScreen(),
     Login(),
@@ -54,8 +54,8 @@ class _PillState extends State<Pill> {
         padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
-            // صورة الخلفية
-            Image.asset('assets/images/images(1).jpeg'),
+
+
 
             SizedBox(height: 20),
             // حقل إدخال اسم الدواء
@@ -137,33 +137,11 @@ class _PillState extends State<Pill> {
               child: Text('Log out'),
             ),
             // عرض الصفحة المناسبة حسب الفهرس
-            Expanded(
-              child: IndexedStack(
-                index: index,
-                children: pages,
-              ),
-            ),
+
           ],
         ),
       ),
-      // شريط التنقل السفلي
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.lightGreenAccent,
-        selectedItemColor: Colors.red,
-        unselectedItemColor: Colors.brown.shade800,
-        currentIndex: index,
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.medical_information_outlined), label: 'Pharmacy'),
-          BottomNavigationBarItem(icon: Icon(Icons.shopping_cart_rounded), label: 'Cart'),
-          BottomNavigationBarItem(icon: Icon(Icons.logout), label: 'Logout'),
-        ],
-        onTap: (v) {
-          setState(() {
-            index = v;
-          });
-        },
-      ),
+
     );
   }
 

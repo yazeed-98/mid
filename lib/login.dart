@@ -94,7 +94,7 @@ class _LoginState extends State<Login> {
 
                     {
                       _formKey.currentState!.save();
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>screen()));
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>Screen()));
 
                     }
                   },
